@@ -97,7 +97,7 @@ header .navigation li a{
 	color: #fff;
 	font-weight: 300;
 }
-header .sticky .navigation li a{
+header.sticky .navigation li a{
 	color: #111;
 }
 header .navigation li a:hover{
