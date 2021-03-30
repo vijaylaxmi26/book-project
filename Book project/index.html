@@ -1,6 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title>order your book!!</title>
+        <title>Book Store</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
     </head>
@@ -15,9 +16,41 @@
     			<li><a href="#expert">Expert</a></li>
     			<li><a href="#testimonials">Testimonials</a></li>
     			<li><a href="#contact">Contact</a></li>
+				<li><a href="#" class='loginbtn' onclick="document.getElementById('login-form').style.display='block'; " style="width:auto;">Login</a></li>
     		</ul>
     	</header>
 
+		<!-- Login Part Popup (Starting) -->
+		<div class="login-part">
+			<div id='login-form'class='login-page'>
+				<div class="form-box">
+					<div class='button-box'>
+						<div id='btn'></div>
+						<button type='button'onclick='login()'class='toggle-btn'>Log In</button>
+						<button type='button'onclick='register()'class='toggle-btn'>Register</button>
+						<button type='button'onclick='closeWindow()'class='special-btn close-btn'>x</button>
+					</div>
+					<form id='login' class='input-group-login'>
+						<input type='text'class='input-field'placeholder='Email Id' required >
+						<input type='password'class='input-field'placeholder='Enter Password' required>
+						<input type='checkbox'class='check-box'><span>Remember Password</span>
+						<button type='submit'class='submit-btn'>Log in</button>
+					</form>
+					<form id='register' class='input-group-register'>
+						<input type='text'class='input-field'placeholder='First Name' required>
+						<input type='text'class='input-field'placeholder='Last Name ' required>
+						<input type='email'class='input-field'placeholder='Email Id' required>
+						<input type='password'class='input-field'placeholder='Enter Password' required>
+						<input type='password'class='input-field'placeholder='Confirm Password'  required>
+						<input type='checkbox'class='check-box'><span>I agree to the terms and conditions</span>
+						<button type='submit'class='submit-btn'>Register</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- (Ending) -->
+       
     	<section class="banner" id='banner'>
     		<div class="content">
     			<h2>Always choose good</h2>
@@ -33,7 +66,7 @@
     			</div>
     			<div class="col50">
     				<div class="imgBx">
-    					<img src="2.jpg">
+    					<img src="images/2.jpg" alt="image">
     				</div>
     			</div>
     		</div>
@@ -47,7 +80,7 @@
         	<div class="content">
         		<div class="box">
         			<div class="imgBx">
-        				<img src="book1.jpg">
+        				<img src="images/book1.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h3>Your Soul is a River</h3>
@@ -56,7 +89,7 @@
 
         		<div class="box">
         			<div class="imgBx">
-        				<img src="book2.jpg">
+        				<img src="images/book2.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h3>NeuroLogic</h3>
@@ -65,7 +98,7 @@
 
         		<div class="box">
         			<div class="imgBx">
-        				<img src="book3.jpg">
+        				<img src="images/book3.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h3>Grahic Design</h3>
@@ -74,7 +107,7 @@
 
         		<div class="box">
         			<div class="imgBx">
-        				<img src="book4.jpg">
+        				<img src="images/book4.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h3>The passion</h3>
@@ -83,7 +116,7 @@
 
         		<div class="box">
         			<div class="imgBx">
-        				<img src="book5.jpg">
+        				<img src="images/book5.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h3>Face it Debbie Harry</h3>
@@ -92,7 +125,7 @@
 
         		<div class="box">
         			<div class="imgBx">
-        				<img src="book6.jpg">
+        				<img src="images/book6.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h3>Women</h3>
@@ -115,7 +148,7 @@
         	<div class="content">
         		<div class="box">
         			<div class="imgBx">
-        				<img src="a1.jpg">
+        				<img src="images/a1.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h2>Methali</h2>
@@ -123,7 +156,7 @@
         		</div>
         		<div class="box">
         			<div class="imgBx">
-        				<img src="a2.jpg">
+        				<img src="images/a2.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h2>Jaina</h2>
@@ -131,7 +164,7 @@
         		</div>
         		<div class="box">
         			<div class="imgBx">
-        				<img src="a3.jpg">
+        				<img src="images/a3.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h2>Steve</h3>
@@ -139,7 +172,7 @@
         		</div>
         		<div class="box">
         			<div class="imgBx">
-        				<img src="4.jpg">
+        				<img src="images/4.jpg" alt="image">
         			</div>
         			<div class="text">
         				<h2>Ann</h3>
@@ -157,7 +190,7 @@
         	<div class="content">
         		<div class="box">
         			<div class="imgBx">
-        				<img src="5.jpg">
+        				<img src="images/5.jpg" alt="image">
         			</div>
         			<div class="text">
         			   <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
@@ -167,7 +200,7 @@
 
         		<div class="box">
         			<div class="imgBx">
-        				<img src="5.jpg">
+        				<img src="images/5.jpg" alt="image">
         			</div>
         			<div class="text">
         			   <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
@@ -177,7 +210,7 @@
 
         		<div class="box">
         			<div class="imgBx">
-        				<img src="5.jpg">
+        				<img src="images/5.jpg" alt="image">
         			</div>
         			<div class="text">
         			   <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
@@ -211,9 +244,11 @@
 
     	<script type="text/javascript">
     		window.addEventListener('scroll',function(){
-    	 const header = document.querySelector('header');
-    header.classList.toggle("sticky",window.scrollY > 0);
+				const header = document.querySelector('header');
+				header.classList.toggle("sticky",window.scrollY > 0);
     		});
+
+
 
     		function toggleMenu(){
     			const menuToggle = document.querySelector('.menuToggle');
@@ -221,6 +256,34 @@
     			menuToggle.classList.toggle('active');
     			navigation.classList.toggle('active');
     		}
+
+			var x=document.getElementById('login');
+			var y=document.getElementById('register');
+			var z=document.getElementById('btn');
+	
+			function register()
+			{
+				x.style.left='-400px';
+				y.style.left='50px';
+				z.style.left='110px';
+			}
+			function login()
+			{
+				x.style.left='50px';
+				y.style.left='450px';
+				z.style.left='0px';
+			}
+	
+			
+			let modal = document.getElementById('login-form');
+			let closeBtn = document.querySelector(".close-btn");
+			closeBtn.addEventListener('click',function(e){
+				modal.style.display = "none";
+			})
+			
+			
     	</script>
+ 
+
     </body>
 </html>
