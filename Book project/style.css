@@ -17,6 +17,7 @@
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    color: #fff;
 }
 .form-box
 {
@@ -25,7 +26,7 @@
     position:relative;
     margin:0 auto;
 	margin-top:70px;
-    background:rgba(0,0,0,0.3);
+    background:rgba(0,0,0,0.9);
     padding:10px;
     overflow: hidden;
 }
@@ -34,7 +35,7 @@
     width:220px;
     margin:35px auto;
     position:relative;
-    box-shadow: 0 0 20px 9px #ff61241f;
+    box-shadow: 0 1px 20px 9px #37b859;
     border-radius: 30px;
 }
 .toggle-btn
@@ -45,6 +46,7 @@
     border:0;
     outline: none;
     position: relative;
+    color: #fff;
 }
 #btn
 {
@@ -53,7 +55,7 @@
     position: absolute;
     width: 110px;
     height: 100%;
-    background: #F3C693;
+    background: #39804c;
     border-radius: 30px;
     transition: .5s;
 }
@@ -63,10 +65,11 @@
     position:absolute;
     width:280px;
     transition:.5s;
+    color: #fff;
 }
 .input-group-register
 {
-    top: 120px;
+    top: 90px;
     position:absolute;
     width:280px;
     transition:.5s;
@@ -91,18 +94,19 @@
     cursor: pointer;
     display: block;
     margin: auto;
-    background: #F3C693;
+    background: #39804c;
     border: 0;
     outline: none;
     border-radius: 30px;
+    color: #fff;
 }
 .check-box
 {
     margin: 30px 10px 34px 0;
 }
-span
+.login-part span
 {
-    color:#777;
+    color:#fff;
     font-size:12px;
     bottom:68px;
     position:absolute;
@@ -110,6 +114,9 @@ span
 #login
 {
     left:50px;
+}
+#login h4{
+	color:#37b859;
 }
 #login input
 {
@@ -160,7 +167,7 @@ p{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background:url(1.jpg);
+	background:url(images/1.jpg);
 	background-color: cover;
 }
 
@@ -182,7 +189,7 @@ p{
 .btn{
 	font-size: 1em;
 	color: #fff;
-	background-color: #ff0157;
+	background-color: #37b859;
 	display: inline-block;
 	padding: 10px 30px;
 	margin-top: 20px;
@@ -223,7 +230,7 @@ header.sticky .logo{
     color:#111;
 }
 header .logo span{
-	color: #ff0157;
+	color: #37b859;
 }
 header .navigation{
 	position: relative;
@@ -242,7 +249,7 @@ header.sticky .navigation li a{
 	color: #111;
 }
 header .navigation li a:hover{
-	color: #ff0157;
+	color: #37b859;
 }
 section{
 	padding: 100px;
@@ -263,7 +270,7 @@ section .row .col50{
 	font-weight: 300;
 }
 .titleText span{
-	color: #ff0157;
+	color: #37b859;
 	font-size: 1.5em;
 	font-weight: 700;
 }
@@ -356,7 +363,7 @@ section .row .col50 .imgBx img{
 	color: #111;
 }
 .testimonials{
-	background: url(bg.jpg);
+	background: url(images/bg.jpg);
 	background-size: cover;
 }
 .white .titleText,.white p{
@@ -409,11 +416,11 @@ section .row .col50 .imgBx img{
 	margin-top: 20px;
 	color: #111;
 	font-size: 1em;
-	color: #ff0157;
+	color: #37b859;
 	font-weight: 600;
 } 
 .contact{
-	background: url(bg1.jpg);
+	background: url(images/bg1.jpg);
 	background-size: cover;
 }
 .contactForm{
@@ -449,7 +456,7 @@ section .row .col50 .imgBx img{
 {
 	font-size: 1em;
 	color: #fff;
-	background: #ff0157;
+	background: #37b859;
     display: inline-block;
     text-transform: uppercase;
     text-decoration: none;
@@ -495,14 +502,14 @@ section .row .col50 .imgBx img{
 		position: relative;
 		width: 40px;
 		height: 40px;
-		background: url(menu.png);
+		background: url(images/menu.png);
 		background-size: 30px;
 		background-repeat: no-repeat;
 		background-position: center;
 		cursor: pointer;
 	}
 	.menuToggle.active{
-		background: url(cancel.png);
+		background: url(images/cancel.png);
 		background-size: 25px;
 		background-repeat: no-repeat;
 		background-position: center;
