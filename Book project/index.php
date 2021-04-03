@@ -30,7 +30,8 @@ session_start();
            if($passmatch){
             ?>
             <script>
-                 alert("you have succuessfuly login!!");
+                 document.getElementById("profile").style.display = "block";
+                 document.getElementById("loginv").style.display = "none";
             </script>
              <?php
            }else{
@@ -77,7 +78,8 @@ session_start();
           if($result){
             ?>
             <script>
-                 alert("you have successfully signup!!");
+                 document.getElementById("profile").style.display = "block";
+                 document.getElementById("loginv").style.display = "none";
             </script>
             <?php
           } 
@@ -104,7 +106,8 @@ session_start();
                 <li><a href="#expert">Expert</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#" class='loginbtn' onclick="document.getElementById('login-form').style.display='block'; " style="width:auto;">Login</a></li>
+                <li><a href="#" id="loginv" class='loginbtn' onclick="document.getElementById('login-form').style.display='block'; " style="width:auto;">Login</a></li>
+                <li><a href="userdashb.php" id="profile" >Profile</a></li>
             </ul>
         </header>
 

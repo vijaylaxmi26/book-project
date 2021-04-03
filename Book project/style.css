@@ -468,6 +468,9 @@ section .row .col50 .imgBx img{
     cursor: pointer;
 }
  
+header #profile{
+	display: none;
+}
 
 @media (max-width: 991px){
 	header,
@@ -507,6 +510,7 @@ section .row .col50 .imgBx img{
 		background-repeat: no-repeat;
 		background-position: center;
 		cursor: pointer;
+		 
 	}
 	.menuToggle.active{
 		background: url(images/cancel.png);
@@ -527,3 +531,5 @@ section .row .col50 .imgBx img{
     }
      
 }
+
+ 
