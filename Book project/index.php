@@ -1,101 +1,16 @@
-<?php
-session_start();
+<?php 
+    session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Book Store</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
 
       
     </head>
     <body>
-
- <?php
-   include 'db.php';
-
-   if(isset($_POST['lsubmit'])){
-       $lemail=$_POST['lemail'];
-       $lpass=$_POST['lpass'];
-
-       $emailcheck ="select *  from usersignup where email='$lemail' ";
-       $row= mysqli_query($conn,$emailcheck);
-       $num = mysqli_num_rows($row);
-       if($num>0){
-           $data = mysqli_fetch_assoc($row);
-           $dpass=$data['pass'];
-           $passmatch = password_verify($lpass,$dpass);
-           if($passmatch){
-            ?>
-            <script>
-                 document.getElementById("profile").style.display = "block";
-                 document.getElementById("loginv").style.display = "none";
-            </script>
-             <?php
-           }else{
-            ?>
-            <script>
-                 alert("Incorect Password!!");
-            </script>
-             <?php
-           }
-       }else{
-        ?>
-        <script>
-             alert("Email not exsist!!");
-        </script>
-         <?php
-
-       }
-   }
-
-   if(isset($_POST['ssubmit'])){
-     $username=mysqli_real_escape_string($conn,$_POST['uname']);
-     $email=mysqli_real_escape_string($conn,$_POST['semail']);
-     $address=mysqli_real_escape_string($conn,$_POST['address']);
-     $phone =mysqli_real_escape_string($conn,$_POST['phone']);
-     $password=mysqli_real_escape_string($conn,$_POST['password']);
-     $cpassword=mysqli_real_escape_string($conn,$_POST['cpassword']);
-
-     $pass=password_hash($password, PASSWORD_BCRYPT);
-     $cpass=password_hash($cpassword, PASSWORD_BCRYPT);
-
-      $emailmatch="select * from usersignup where email='$email'";
-      $row= mysqli_query($conn,$emailmatch);
-      $num = mysqli_num_rows($row);
-      if($num>0){
-        ?>
-           <script>
-                alert("Email already exsist!!");
-           </script>
-        <?php
-      }else{
-        if($password === $cpassword){
-          $query="INSERT INTO usersignup( username, email, addr, phone, pass, cpassword ) VALUES ('$username','$email','$address','$phone','$pass','$cpass')";
-          $result= mysqli_query($conn,$query);
-          if($result){
-            ?>
-            <script>
-                 document.getElementById("profile").style.display = "block";
-                 document.getElementById("loginv").style.display = "none";
-            </script>
-            <?php
-          } 
-        }else{
-          ?>
-           <script>
-                alert("Password not mathcing!!");
-           </script>
-        <?php
-        }
-      }
-   }
-  
-?>
-     
-        
         <header>
             <a href="#" class="logo">Book<span>.</span></a>
            <div class="menuToggle" onclick="toggleMenu();"></div>
@@ -106,8 +21,18 @@ session_start();
                 <li><a href="#expert">Expert</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#" id="loginv" class='loginbtn' onclick="document.getElementById('login-form').style.display='block'; " style="width:auto;">Login</a></li>
-                <li><a href="userdashb.php" id="profile" >Profile</a></li>
+                <?php 
+                    if(isset($_SESSION['sno'])) {
+                        echo "<li><a href='#'>Profile</a></li>";
+                        echo "<li><a href='includes/logout.php'>Logout</a></li>";
+                    }
+                    else {
+                        echo "<li><a href='#' id='loginv' class='loginbtn' onclick=\"document.getElementById('login-form').style.display='block'; \" style='width:auto;'>Login</a></li> ";
+                    }
+          
+                ?>
+                <!-- <li><a href="#" id="loginv" class='loginbtn' onclick="document.getElementById('login-form').style.display='block'; " style="width:auto;">Login</a></li>  -->
+                <!-- <li><a href="userdashb.php" id="profile" >Profile</a></li> -->
             </ul>
         </header>
 
@@ -121,14 +46,14 @@ session_start();
                         <button type='button'onclick='register()'class='toggle-btn'>Signup</button>
                         <button type='button'onclick='closeWindow()'class='special-btn close-btn'>x</button>
                     </div>
-                    <form id='login' class='input-group-login' method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <form id='login' class='input-group-login' method="POST" action="includes/login.php">
                         <input type='text'class='input-field' name='lemail' placeholder='Email Id' required >
                         <input type='password'class='input-field' name='lpass' placeholder='Enter Password' required>
                         <br><br>
                          <h4>Don't have account go to signup</h4><br><br>
                         <button type='submit' name='lsubmit' class='submit-btn'>Log in</button>
                     </form>
-                    <form id='register' class='input-group-register' method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <form id='register' class='input-group-register' method="POST" action="includes/signup.php">
                         <input type='text'class='input-field' name='uname' placeholder='Username' required>
                         <input type='email'class='input-field' name='semail' placeholder='Email Id' required>
                         <input type='textarea'class='input-field' name='address' placeholder='Address' required>
@@ -138,6 +63,52 @@ session_start();
                         <input type='checkbox'class='check-box' required><span>I agree to the terms and conditions</span>
                         <button type='submit' name='ssubmit' class='submit-btn'>Signup</button>
                     </form>
+
+                    <?php 
+                        if(isset($_GET['error']))
+                        {
+                            if($_GET['error'] == "invaliduser") {
+                                ?>
+                                <script>alert("Invalid Name");</script>
+                                <?php
+                            }
+                            else if($_GET["error"] == "invalidphone") {
+                                ?>
+                                <script>alert("Invalid Phone number");</script>
+                                <?php
+                            }
+                            else if($_GET["error"] == "wrongpass") {
+                                ?>
+                                <script>alert("Password doesn't match");</script>
+                                <?php
+                            }
+                            else if($_GET["error"] == "emailTaken") {
+                                ?>
+                                <script>alert("Email already taken");</script>
+                                <?php
+                            }
+                            else if($_GET["error"] == "createfailed") {
+                                ?>
+                                <script>alert("Error in database");</script>
+                                <?php
+                            }
+                            else if($_GET["error"] == "none"){
+                                ?>
+                                <script>alert("Success");</script>
+                                <?php
+                            }
+                            else if($_GET["error"] == "wrongloginpass"){
+                                ?>
+                                <script>alert("Password is Incorrect");</script>
+                                <?php
+                            }
+                            else if($_GET["error"] == "wrongloginemail"){
+                                ?>
+                                <script>alert("Email is Incorrect");</script>
+                                <?php
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </div>
