@@ -1,16 +1,7 @@
 <?php 
     session_start();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Book Store</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style.css">
-
-      
-    </head>
-    <body>
+ <?php require_once("./includes/header.php");   ?>
         <header>
             <a href="#" class="logo">Book<span>.</span></a>
            <div class="menuToggle" onclick="toggleMenu();"></div>
@@ -142,145 +133,38 @@
                 <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.</p>
             </div>
             <div class="content">
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/book1.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h3>Your Soul is a River</h3>
-                    </div>
-                </div>
+            <?php
 
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/book2.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h3>NeuroLogic</h3>
-                    </div>
-                </div>
+               $sql ="select * from product";
+               $stmt =$pdo->prepare($sql);
+               $stmt->execute();
+               
+               while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
+                   $product_name =$posts['product_name'];
+                   $product_detail=substr($posts['product_discription'],0,140) ;
+                   $product_photo = $posts['product_photo'];
+                   $product_rating = $posts['product_rating'];
+                   $product_price = $posts['product_price'];
+                    
+                   ?>
+                       
+                        <div class="box">
+                            <div class="imgBx">
+                               <img src="images/<?php echo $product_photo ?>" alt="<?php echo $product_photo ?>">
+                            </div>
+                            <div class="text">
+                                <h3><?php echo $product_name ?></h3>
+                                <p class="card-text" style="font-size:12px;"><?php echo $product_detail ?></p>
+                            </div>
+                            <div style="color: rgb(108, 192, 83); font-size:11px;">
+                                <h3>Product rating :: <?php echo $product_rating ?></h3>
+                            </div>
+                        </div>
 
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/book3.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h3>Grahic Design</h3>
-                    </div>
-                </div>
+                   <?php
+               }
 
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/book4.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h3>The passion</h3>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/book5.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h3>Face it Debbie Harry</h3>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/book6.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h3>Women</h3>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="title">
-                 <a href="#" class="btn">view All</a>
-            </div>
-            
-        </section>
-
-        <section class="expert" id="expert">
-            <div class="title">
-                <h2 class="titleText">Our Authors <span>E</span>xpert</h2>
-                <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.</p>
-            </div>
-            <div class="content">
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/a1.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h2>Methali</h2>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/a2.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h2>Jaina</h2>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/a3.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h2>Steve</h3>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/4.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                        <h2>Ann</h3>
-                    </div>
-                </div>
-                 
-            </div>
-        </section>
-
-        <section class="testimonials" id="testimonials">
-            <div class="title white">
-                <h2 class="titleText">They <span>S</span>aid About us</h2>
-                <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.</p>
-            </div>
-            <div class="content">
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/5.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                       <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
-                       <h3>Someone Famous</h3>
-                    </div>                  
-                </div> 
-
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/5.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                       <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
-                       <h3>Someone Famous</h3>
-                    </div>                  
-                </div>    
-
-                <div class="box">
-                    <div class="imgBx">
-                        <img src="images/5.jpg" alt="image">
-                    </div>
-                    <div class="text">
-                       <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
-                       <h3>Someone Famous</h3>
-                    </div>                  
-                </div> 
+            ?>
             </div>
         </section>
 
