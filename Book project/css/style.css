@@ -163,11 +163,11 @@ p{
 	z-index:10;
 	position: relative;
 	width: 100%;
-	min-height: 100vh;
+	 height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background:url(images/1.jpg);
+	background:url(../images/1.jpg);
 	background-color: cover;
 }
 
@@ -303,7 +303,8 @@ section .row .col50 .imgBx img{
 	flex-direction: row-reverse;
 	flex-wrap: wrap;
 	margin-top: 40px;
-}
+} 
+ 
 .menu .content .box{
 	width: 340px;
 	margin: 20px;
@@ -363,8 +364,9 @@ section .row .col50 .imgBx img{
 	color: #111;
 }
 .testimonials{
-	background: url(images/bg.jpg);
+	background: url(../images/bg.jpg);
 	background-size: cover;
+	
 }
 .white .titleText,.white p{
 	color: #fff;
@@ -420,7 +422,7 @@ section .row .col50 .imgBx img{
 	font-weight: 600;
 } 
 .contact{
-	background: url(images/bg1.jpg);
+	background: url(../images/bg1.jpg);
 	background-size: cover;
 }
 .contactForm{
@@ -505,7 +507,7 @@ header #profile{
 		position: relative;
 		width: 40px;
 		height: 40px;
-		background: url(images/menu.png);
+		background: url(../images/menu.png);
 		background-size: 30px;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -513,7 +515,7 @@ header #profile{
 		 
 	}
 	.menuToggle.active{
-		background: url(images/cancel.png);
+		background: url(../images/cancel.png);
 		background-size: 25px;
 		background-repeat: no-repeat;
 		background-position: center;
