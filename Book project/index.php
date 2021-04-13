@@ -135,7 +135,7 @@
             <div class="content">
             <?php
 
-               $sql ="select * from product";
+               $sql ="select * from product limit 0,6";
                $stmt =$pdo->prepare($sql);
                $stmt->execute();
                
@@ -146,8 +146,9 @@
                    $product_rating = $posts['product_rating'];
                    $product_price = $posts['product_price'];
                     
-                   ?>
-                       
+                   ?> 
+
+                     
                         <div class="box">
                             <div class="imgBx">
                                <img src="images/<?php echo $product_photo ?>" alt="<?php echo $product_photo ?>">
@@ -160,13 +161,100 @@
                                 <h3>Product rating :: <?php echo $product_rating ?></h3>
                             </div>
                         </div>
+                   
 
                    <?php
                }
 
             ?>
+               
+            </div>
+            <div style="justfy-content:center">
+            <a href="product.php" class="btn">viwe all</a>
             </div>
         </section>
+
+        <section class="expert" id="expert">
+            <div class="title">
+                <h2 class="titleText">Our Authors <span>E</span>xpert</h2>
+                <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.</p>
+            </div>
+            <div class="content">
+                <div class="box">
+                    <div class="imgBx">
+                        <img src="images/a1.jpg" alt="image">
+                    </div>
+                    <div class="text">
+                        <h2>Methali</h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBx">
+                        <img src="images/a2.jpg" alt="image">
+                    </div>
+                    <div class="text">
+                        <h2>Jaina</h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBx">
+                        <img src="images/a3.jpg" alt="image">
+                    </div>
+                    <div class="text">
+                        <h2>Steve</h3>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBx">
+                        <img src="images/4.jpg" alt="image">
+                    </div>
+                    <div class="text">
+                        <h2>Ann</h3>
+                    </div>
+                </div>
+                 
+            </div>
+        </section>
+
+        <section class="testimonials" id="testimonials">
+            <div class="title white">
+                <h2 class="titleText">They <span>S</span>aid About us</h2>
+                <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.</p>
+            </div>
+            <div class="content">
+                <div class="box">
+                    <div class="imgBx">
+                        <img src="images/5.jpg" alt="image">
+                    </div>
+                    <div class="text">
+                       <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
+                       <h3>Someone Famous</h3>
+                    </div>                  
+                </div> 
+
+                <div class="box">
+                    <div class="imgBx">
+                        <img src="images/5.jpg" alt="image">
+                    </div>
+                    <div class="text">
+                       <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
+                       <h3>Someone Famous</h3>
+                    </div>                  
+                </div>    
+
+                <div class="box">
+                    <div class="imgBx">
+                        <img src="images/5.jpg" alt="image">
+                    </div>
+                    <div class="text">
+                       <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more.he latest tech news about the world's best (and sometimes worst).</p>
+                       <h3>Someone Famous</h3>
+                    </div>                  
+                </div> 
+            </div>
+        </section>
+ 
+
 
         <section class="contact" id="contact">
             <div class="title white">
@@ -189,49 +277,4 @@
                 </div>
             </div>
         </section>
-
-        <script type="text/javascript">
-            window.addEventListener('scroll',function(){
-                const header = document.querySelector('header');
-                header.classList.toggle("sticky",window.scrollY > 0);
-            });
-
-
-
-            function toggleMenu(){
-                const menuToggle = document.querySelector('.menuToggle');
-                const navigation = document.querySelector('.navigation');
-                menuToggle.classList.toggle('active');
-                navigation.classList.toggle('active');
-            }
-
-            var x=document.getElementById('login');
-            var y=document.getElementById('register');
-            var z=document.getElementById('btn');
-    
-            function register()
-            {
-                x.style.left='-400px';
-                y.style.left='50px';
-                z.style.left='110px';
-            }
-            function login()
-            {
-                x.style.left='50px';
-                y.style.left='450px';
-                z.style.left='0px';
-            }
-    
-            
-            let modal = document.getElementById('login-form');
-            let closeBtn = document.querySelector(".close-btn");
-            closeBtn.addEventListener('click',function(e){
-                modal.style.display = "none";
-            })
-            
-            
-        </script>
- 
-
-    </body>
-</html>
+<?php require_once("./includes/footer.php");   ?>
