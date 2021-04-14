@@ -2,30 +2,8 @@
     session_start();
 ?>
  <?php require_once("./includes/header.php");   ?>
-        <header>
-            <a href="#" class="logo">Book<span>.</span></a>
-           <div class="menuToggle" onclick="toggleMenu();"></div>
-            <ul class="navigation">
-                <li><a href="#banner">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#expert">Expert</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <?php 
-                    if(isset($_SESSION['sno'])) {
-                        echo "<li><a href='#'>Profile</a></li>";
-                        echo "<li><a href='includes/logout.php'>Logout</a></li>";
-                    }
-                    else {
-                        echo "<li><a href='#' id='loginv' class='loginbtn' onclick=\"document.getElementById('login-form').style.display='block'; \" style='width:auto;'>Login</a></li> ";
-                    }
-          
-                ?>
-                <!-- <li><a href="#" id="loginv" class='loginbtn' onclick="document.getElementById('login-form').style.display='block'; " style="width:auto;">Login</a></li>  -->
-                <!-- <li><a href="userdashb.php" id="profile" >Profile</a></li> -->
-            </ul>
-        </header>
+ <?php require_once("./includes/navigation.php");   ?>
+        
 
         <!-- Login Part Popup (Starting) -->
         <div class="login-part">
@@ -33,9 +11,9 @@
                 <div class="form-box">
                     <div class='button-box'>
                         <div id='btn'></div>
-                        <button type='button'onclick='login()'class='toggle-btn'>Log In</button>
-                        <button type='button'onclick='register()'class='toggle-btn'>Signup</button>
-                        <button type='button'onclick='closeWindow()'class='special-btn close-btn'>x</button>
+                        <button type='button' onclick='login()' class='toggle-btn'>Log In</button>
+                        <button type='button' onclick='register()' class='toggle-btn'>Signup</button>
+                        <button type='button' onclick='closeWindow()' class='special-btn close-btn'>x</button>
                     </div>
                     <form id='login' class='input-group-login' method="POST" action="includes/login.php">
                         <input type='text'class='input-field' name='lemail' placeholder='Email Id' required >
@@ -169,7 +147,7 @@
             ?>
                
             </div>
-            <div style="justfy-content:center">
+            <div style="justify-content:center">
             <a href="product.php" class="btn">viwe all</a>
             </div>
         </section>
@@ -277,4 +255,5 @@
                 </div>
             </div>
         </section>
-<?php require_once("./includes/footer.php");   ?>
+    <?php include 'includes/footer.php' ;?>
+        
