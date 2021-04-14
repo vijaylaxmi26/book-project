@@ -20,9 +20,10 @@
             height: 150px;
             width: 100%;
         }
-        .col-sm-4 {
+        .col-lg-4,.col-md-4 {
             padding: 5px;
-            margin: 0px;
+            
+            margin-top: 5px;
             box-sizing: border-box;
         }
         .row  {
@@ -30,7 +31,7 @@
         }
         
         .card {
-            padding: 10px;
+            padding: 7px;
         }
         ul li {
             list-style: none;
@@ -61,7 +62,7 @@
         
         <div class="space"></div>
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-lg-2 col-xs-12">
                 <br>
                 <h3>Categories</h3>
                 <ul>
@@ -81,10 +82,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-10">
+            <div class="col-lg-10 col-xs-12">
                 
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
@@ -137,7 +138,7 @@
                         </div>
                         <!-- Card -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
@@ -184,7 +185,7 @@
                         </div>
                         <!-- Card -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
@@ -234,7 +235,7 @@
                         </div>
                         <!-- Card -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
@@ -281,7 +282,7 @@
                         </div>
                         <!-- Card -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
@@ -328,7 +329,7 @@
                         </div>
                         <!-- Card -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="ccol-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
@@ -375,7 +376,7 @@
                         </div>
                         <!-- Card -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
@@ -422,7 +423,7 @@
                         </div>
                         <!-- Card -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 col-md-6">
                         <!-- Card -->
                         <div class="card">
 
