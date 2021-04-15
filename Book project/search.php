@@ -11,7 +11,6 @@
         <style>
         header {
             background-color: #37B859;
-          
         }
         *{
             font: normal;
@@ -40,7 +39,7 @@
         .btn {
             font-size: 0.7rem;
             background-color: #057BFF;
-            padding: 5px;
+
             margin-top: 0;
             letter-spacing: normal;
         }
@@ -65,27 +64,38 @@
         <div class="row">
             <div class="col-lg-2 col-xs-12">
                 <?php include 'includes/categories-side.php' ?>
-                
             </div>
             <div class="col-lg-10 col-xs-12">
-                
-                <div class="row">
-                <?php 
-                    $sql ="select * from product";
+            <?php
+                if(isset($_POST['search'])){
+                    $item = $_POST['input-item'];
+                    $sql ="select * from product where product_name LIKE '%$item%' OR product_catagary LIKE '%$item%' ";
                     $stmt =$pdo->prepare($sql);
                     $stmt->execute();
-                    while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
-                        $productName = $posts['product_name'];
-                        $productCategory = $posts['product_catagary'];
-                        $productPrice = $posts['product_price'];
-                        $productImage = $posts['product_photo'];
-                        $productRating = floor($posts['product_rating']);
-                ?>
+                    $row = $pdo->query("select count(*) from product where product_name LIKE '%$item%' OR product_catagary LIKE '%$item%' ")->fetchColumn(); 
+                    
+            ?>
+            
+                <div class="row text-align-center">
+            <?php
+                    if($row > 0){
+                        while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
+                            $productName = $posts['product_name'];
+                            $productCategory = $posts['product_catagary'];
+                            $productPrice = $posts['product_price'];
+                            $productImage = $posts['product_photo'];
+                            $productRating = floor($posts['product_rating']);
+                            
+                            
+            ?>
                         <div class="col-lg-4 col-md-6">
                             <!-- Card -->
                             <div class="card">
+
                             <div class="view zoom overlay">
                             <img class="img-fluid w-100" src="images/<?php echo $productImage; ?>" alt="<?php echo $productImage; ?>">
+                        
+                            
                             </div>
 
                             <div class="card-body text-center">
@@ -107,10 +117,26 @@
                                 }
                             
                             ?>
+                                <!-- <li>
+                                
+                                </li>
+                                <li>
+                                <i class="fas fa-star fa-sm text-primary"></i>
+                                </li>
+                                <li>
+                                <i class="fas fa-star fa-sm text-primary"></i>
+                                </li>
+                                <li>
+                                <i class="fas fa-star fa-sm text-primary"></i>
+                                </li>
+                                <li>
+                                <i class="far fa-star fa-sm text-primary"></i>
+                                </li> -->
                             </ul>
                             <hr>
                             <h6 class="mb-3">
                                 <span class="text-danger mr-1">£<?php echo $productPrice; ?></span>
+                                
                             </h6>
 
                             <!-- <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">
@@ -130,9 +156,16 @@
                             <!-- Card -->
                         </div>
 
-                <?php
+            <?php        
+                        }
                     }
-                ?>
+                    else {
+                        echo "<h1>NOT FOUND</h1>";
+                    } 
+                }
+                
+            ?>
+                    
                 </div>            
             </div>
         </div>
