@@ -67,7 +67,8 @@
                                        </td>
 
                                     </tr>
-                                    <?php } ?>
+                                    <?php $i=$i+1;
+                                     } ?>
                                  </tbody>
                               </table>
                            </div>
