@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2021 at 03:46 PM
+-- Generation Time: Apr 25, 2021 at 06:21 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -100,15 +100,16 @@ CREATE TABLE `orders` (
   `order_status` int(11) NOT NULL DEFAULT 1,
   `order_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `oproduct_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`or_id`, `address`, `pincode`, `total_price`, `order_status`, `order_on`, `oproduct_id`, `quantity`) VALUES
-(1, 'Gandhinagar, Gujrat', 112345, 1400, 1, '2021-04-25 13:37:27', 1, 2);
+INSERT INTO `orders` (`or_id`, `address`, `pincode`, `total_price`, `order_status`, `order_on`, `oproduct_id`, `quantity`, `user_id`) VALUES
+(1, 'Gandhinagar, Gujrat', 112345, 1400, 2, '2021-04-25 13:37:27', 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,8 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_discription`, `pro
 (5, 'Face it Debbie Harry', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n', 125, 300, 4.1, 12, 'book5.jpg', 1, 7),
 (6, ' Women', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n', 632, 600, 3.6, 10, 'book6.jpg', 1, 1),
 (7, 'your soul', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n', 154, 1200, 1.2, 16, 'book1.jpg', 1, 1),
-(11, 'pease', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', NULL, 218, 0, 26, '3051799683_pexels-fotografierende-3563625.jpg', 1, 7);
+(11, 'pease', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', NULL, 218, 0, 26, '3051799683_pexels-fotografierende-3563625.jpg', 1, 7),
+(16, '', '', NULL, 0, 0, 0, '46674414_', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -278,7 +280,7 @@ ALTER TABLE `orderstatus`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `usersignup`
