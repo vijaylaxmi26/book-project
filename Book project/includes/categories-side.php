@@ -5,13 +5,13 @@
 
 <?php 
     if($pdo){
-        $sql ="select distinct(product_catagary) from product ";
+        $sql ="select * from category where status = '1'";
         $stmt =$pdo->prepare($sql);
         $stmt->execute();
 
         while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
-            $categoryName = $posts['product_catagary'];
-            echo "<li>{$categoryName}</li>";
+            $categoryName = $posts['cat_type'];
+            echo "<li><a href='#'>{$categoryName}</a></li>";
         }
     }
     else {

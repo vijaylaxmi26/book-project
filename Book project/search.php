@@ -1,4 +1,5 @@
-<?php  require_once("./includes/db1.php"); ?>
+<?php  require_once("./includes/db1.php"); 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +40,7 @@
         .btn {
             font-size: 0.7rem;
             background-color: #057BFF;
-
+            padding: 5px;
             margin-top: 0;
             letter-spacing: normal;
         }
@@ -52,6 +53,7 @@
         .form-outline input {
             width: 90%;
         }
+        
         
         
         </style>
@@ -67,12 +69,13 @@
             </div>
             <div class="col-lg-10 col-xs-12">
             <?php
+                
                 if(isset($_POST['search'])){
                     $item = $_POST['input-item'];
-                    $sql ="select * from product where product_name LIKE '%$item%' OR product_catagary LIKE '%$item%' ";
+                    $sql ="select products.* ,cat_type from products, category where product_name LIKE '%$item%' and products.product_id = category.id";
                     $stmt =$pdo->prepare($sql);
                     $stmt->execute();
-                    $row = $pdo->query("select count(*) from product where product_name LIKE '%$item%' OR product_catagary LIKE '%$item%' ")->fetchColumn(); 
+                    $row = $pdo->query("select count(*) from products where product_name LIKE '%$item%'")->fetchColumn(); 
                     
             ?>
             
@@ -81,10 +84,11 @@
                     if($row > 0){
                         while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
                             $productName = $posts['product_name'];
-                            $productCategory = $posts['product_catagary'];
+                            $productCategory = $posts['cat_type'];
                             $productPrice = $posts['product_price'];
                             $productImage = $posts['product_photo'];
                             $productRating = floor($posts['product_rating']);
+                            $product_id = $posts['product_id'];
                             
                             
             ?>
@@ -142,9 +146,12 @@
                             <!-- <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">
                                 <i class="fas fa-shopping-cart pr-2"></i>Add to cart
                             </button> -->
-                            <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
-                                <i class="fas fa-info-circle pr-2"></i>Details
-                            </button>
+                            <a href="product_details.php?id=<?php echo $product_id; ?>">
+                                <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                                    <i class="fas fa-info-circle pr-2"></i>
+                                    Details
+                                </button>
+                            </a>
                             <!--
                             <button type="button" class="btn btn-danger btn-sm px-3 mb-2 material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add to wishlist">
                                 <i class="far fa-heart"></i>
@@ -163,6 +170,10 @@
                         echo "<h1>NOT FOUND</h1>";
                     } 
                 }
+                else {
+                    header('location: product.php');
+                    exit();
+                }
                 
             ?>
                     
@@ -172,3 +183,5 @@
   
     </body>
 </html>
+ 
+

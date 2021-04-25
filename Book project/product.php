@@ -53,6 +53,7 @@
         .form-outline input {
             width: 90%;
         }
+       
         
         
         </style>
@@ -71,12 +72,12 @@
                 
                 <div class="row">
                 <?php 
-                    $sql ="select * from product";
+                    $sql ="select * from products where status = '1'";
                     $stmt =$pdo->prepare($sql);
                     $stmt->execute();
                     while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
+                        $product_id = $posts['product_id'];
                         $productName = $posts['product_name'];
-                        $productCategory = $posts['product_catagary'];
                         $productPrice = $posts['product_price'];
                         $productImage = $posts['product_photo'];
                         $productRating = floor($posts['product_rating']);
@@ -116,9 +117,12 @@
                             <!-- <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">
                                 <i class="fas fa-shopping-cart pr-2"></i>Add to cart
                             </button> -->
-                            <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
-                                <i class="fas fa-info-circle pr-2"></i>Details
-                            </button>
+                            <a href="product_details.php?id=<?php echo $product_id; ?>">
+                                <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                                    <i class="fas fa-info-circle pr-2"></i>
+                                    Details
+                                </button>
+                            </a>
                             <!--
                             <button type="button" class="btn btn-danger btn-sm px-3 mb-2 material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add to wishlist">
                                 <i class="far fa-heart"></i>
