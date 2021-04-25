@@ -241,18 +241,20 @@
             </div>
             <div class="contactForm">
                 <h3>Send message</h3>
+                <form method="post" action="admin/contact_us.php">
                 <div class="inputBox">
-                    <input type="text" placeholder="Name">
+                    <input type="text" name="name" placeholder="Name">
                 </div>
                 <div class="inputBox">
-                    <input type="text" placeholder="Email">
+                    <input type="email" name="email" placeholder="Email">
                 </div>
                 <div class="inputBox">
-                    <textarea placeholder="message"></textarea>
+                    <textarea name="message" placeholder="message"></textarea>
                 </div>
                 <div class="inputBox">
-                    <input type="submit" placeholder="Send">
+                    <input type="submit" name="submit" placeholder="Send">
                 </div>
+            </form>
             </div>
         </section>
     <?php include 'includes/footer.php' ;?>
