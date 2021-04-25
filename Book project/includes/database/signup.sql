@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2021 at 03:18 PM
+-- Generation Time: Apr 25, 2021 at 03:46 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -94,15 +94,21 @@ INSERT INTO `contact_us` (`id`, `name`, `email`, `message`, `status`) VALUES
 
 CREATE TABLE `orders` (
   `or_id` int(11) NOT NULL,
-  `seller_id` int(11) NOT NULL,
   `address` varchar(255) NOT NULL,
   `pincode` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
   `order_status` int(11) NOT NULL DEFAULT 1,
   `order_on` timestamp NOT NULL DEFAULT current_timestamp(),
-  `product_id` int(11) NOT NULL,
+  `oproduct_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`or_id`, `address`, `pincode`, `total_price`, `order_status`, `order_on`, `oproduct_id`, `quantity`) VALUES
+(1, 'Gandhinagar, Gujrat', 112345, 1400, 1, '2021-04-25 13:37:27', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -112,14 +118,14 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `orderstatus` (
   `os_id` int(11) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `ostatus` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orderstatus`
 --
 
-INSERT INTO `orderstatus` (`os_id`, `status`) VALUES
+INSERT INTO `orderstatus` (`os_id`, `ostatus`) VALUES
 (1, 'Pending'),
 (2, 'Processing'),
 (3, 'Shipped'),
@@ -260,7 +266,7 @@ ALTER TABLE `contact_us`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `or_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `or_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orderstatus`
