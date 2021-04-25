@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2021 at 12:31 PM
+-- Generation Time: Apr 25, 2021 at 03:46 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -85,6 +85,52 @@ INSERT INTO `contact_us` (`id`, `name`, `email`, `message`, `status`) VALUES
 (1, 'ravesh', 'ravesh123@gmail.com', 'i like your website', 0),
 (3, 'joe', 'joe123@gmail.com', 'nice content', 0),
 (4, 'techno starks', 'technostarks03@gmail.com', 'can we buy your book?', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `or_id` int(11) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `pincode` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL,
+  `order_status` int(11) NOT NULL DEFAULT 1,
+  `order_on` timestamp NOT NULL DEFAULT current_timestamp(),
+  `oproduct_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`or_id`, `address`, `pincode`, `total_price`, `order_status`, `order_on`, `oproduct_id`, `quantity`) VALUES
+(1, 'Gandhinagar, Gujrat', 112345, 1400, 1, '2021-04-25 13:37:27', 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderstatus`
+--
+
+CREATE TABLE `orderstatus` (
+  `os_id` int(11) NOT NULL,
+  `ostatus` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderstatus`
+--
+
+INSERT INTO `orderstatus` (`os_id`, `ostatus`) VALUES
+(1, 'Pending'),
+(2, 'Processing'),
+(3, 'Shipped'),
+(4, 'Canceled'),
+(5, 'Complete');
 
 -- --------------------------------------------------------
 
@@ -171,6 +217,18 @@ ALTER TABLE `contact_us`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`or_id`);
+
+--
+-- Indexes for table `orderstatus`
+--
+ALTER TABLE `orderstatus`
+  ADD PRIMARY KEY (`os_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -203,6 +261,18 @@ ALTER TABLE `category`
 --
 ALTER TABLE `contact_us`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `or_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `orderstatus`
+--
+ALTER TABLE `orderstatus`
+  MODIFY `os_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product`
