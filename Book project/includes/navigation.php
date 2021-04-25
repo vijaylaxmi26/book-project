@@ -13,16 +13,15 @@ $totalProduct = $obj->totalProduct();
             <a href="#" class="logo">Book<span>.</span></a>
            <div class="menuToggle" onclick="toggleMenu();"></div>
             <ul class="navigation">
-                <li><a href="#banner">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#menu">Menu</a></li>
+                <li><a href="product.php">Menu</a></li>
                 <!-- <li><a href="#expert">Expert</a></li> -->
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact Us</a></li>
                 
                 <?php 
-                    if(isset($_SESSION['sno'])) {
-                        echo "<li><a href='#'>Profile</a></li>";
+                    if(isset($_SESSION['useremail'])) {
                         echo "<li><a href='includes/logout.php'>Logout</a></li>";
                     }
                     else {

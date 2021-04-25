@@ -1,6 +1,4 @@
-<?php 
-    session_start();
-?>
+
  <?php require_once("./includes/header.php");   ?>
  <?php require_once("./includes/navigation.php");   ?>
         
@@ -33,51 +31,48 @@
                         <button type='submit' name='ssubmit' class='submit-btn'>Signup</button>
                     </form>
 
-                    <?php 
-                        if(isset($_GET['error']))
-                        {
-                            if($_GET['error'] == "invaliduser") {
-                                ?>
-                                <script>alert("Invalid Name");</script>
-                                <?php
-                            }
-                            else if($_GET["error"] == "invalidphone") {
-                                ?>
-                                <script>alert("Invalid Phone number");</script>
-                                <?php
-                            }
-                            else if($_GET["error"] == "wrongpass") {
-                                ?>
-                                <script>alert("Password doesn't match");</script>
-                                <?php
-                            }
-                            else if($_GET["error"] == "emailTaken") {
-                                ?>
-                                <script>alert("Email already taken");</script>
-                                <?php
-                            }
-                            else if($_GET["error"] == "createfailed") {
-                                ?>
-                                <script>alert("Error in database");</script>
-                                <?php
-                            }
-                            else if($_GET["error"] == "none"){
-                                ?>
-                                <script>alert("Success");</script>
-                                <?php
-                            }
-                            else if($_GET["error"] == "wrongloginpass"){
-                                ?>
-                                <script>alert("Password is Incorrect");</script>
-                                <?php
-                            }
-                            else if($_GET["error"] == "wrongloginemail"){
-                                ?>
-                                <script>alert("Email is Incorrect");</script>
-                                <?php
-                            }
+                <?php 
+                    if(isset($_GET['error'])){
+                        $error_type = $_GET['error'];
+
+                        if($error_type == "passnotmatch"){
+                ?>
+                            <script>alert("Password Does not match");</script>
+                <?php
                         }
-                    ?>
+                        else if($error_type == "wrongusername"){
+                ?>
+                            <script>alert("Please Enter a suitable name");</script>
+                <?php
+                        }
+                        else if($error_type == "wrongphone"){
+                ?>
+                            <script>alert("Enter a valid phone number");</script>
+                <?php
+                        }
+                        else if($error_type == "servererror"){
+                ?>
+                            <script>alert("Error in the server, please try again");</script>
+                <?php
+                        }
+                        else if($error_type == "emailexsist"){
+                ?>
+                            <script>alert("Enter another email");</script>
+                <?php            
+                        }
+                        else if($error_type == "none"){
+                ?>
+                            <script>alert("Succesfully Registered!");</script>
+                <?php 
+                        }
+                        else if($error_type == "loginfirst"){
+                ?>
+                            <script>alert("Please login first to proceed further");</script>
+                <?php 
+                        }
+                }
+                ?>
+       
                 </div>
             </div>
         </div>
@@ -113,7 +108,7 @@
             <div class="content">
             <?php
 
-               $sql ="select * from product limit 0,6";
+               $sql ="select * from products limit 0,6";
                $stmt =$pdo->prepare($sql);
                $stmt->execute();
                
@@ -136,7 +131,7 @@
                                 <p class="card-text" style="font-size:12px;"><?php echo $product_detail ?></p>
                             </div>
                             <div style="color: rgb(108, 192, 83); font-size:11px;">
-                                <h3>Product rating :: <?php echo $product_rating ?></h3>
+                                <h3>Product rating : <?php echo $product_rating ?></h3>
                             </div>
                         </div>
                    

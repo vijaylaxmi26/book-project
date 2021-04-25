@@ -14,6 +14,12 @@
     if($types == "add"){
         $obj->addProduct($pid,$qty);
     }
+    if($types == "update"){
+        $obj->updateProduct($pid,$qty);
+    }
+    if($types == "remove"){
+        $obj->removeProduct($pid);
+    }
     echo count($_SESSION['cart']);
     
 ?>

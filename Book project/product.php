@@ -72,7 +72,7 @@
                 
                 <div class="row">
                 <?php 
-                    $sql ="select * from products where status = '1'";
+                    $sql ="select * from products,category where category.status='1' and products.cat_id = category.id";
                     $stmt =$pdo->prepare($sql);
                     $stmt->execute();
                     while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
@@ -80,6 +80,7 @@
                         $productName = $posts['product_name'];
                         $productPrice = $posts['product_price'];
                         $productImage = $posts['product_photo'];
+                        $productCategory = $posts['cat_type'];
                         $productRating = floor($posts['product_rating']);
                 ?>
                         <div class="col-lg-4 col-md-6">

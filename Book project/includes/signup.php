@@ -1,65 +1,66 @@
-<?php 
+<?php
+require('db1.php');
 
-if(isset($_POST['ssubmit']))
-{
-    $username=$_POST['uname'];
-    $email=$_POST['semail'];
-    $address=$_POST['address'];
-    $phone=$_POST['phone'];
-    $password=$_POST['password'];
-    $cpassword=$_POST['cpassword'];
+if(isset($_POST['ssubmit'])){
+    $username = $_POST['uname'];
+    $email = $_POST['semail'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
 
-
-
-    include 'db.php';
-    require_once 'functions.php';
-
-
-
-    if(invalidUid($username) != false) {
-        header("location: ../index.php?error=invaliduser");
+    // check for password
+    if($password != $cpassword){
+        header('location: ../index.php?error=passnotmatch');
         exit();
     }
 
-    if(invalidPhone($phone) != false) {
-        header("location: ../index.php?error=invalidphone");
+    // check for username
+    if(!preg_match("/^[a-zA-Z]+$/",$username)){
+        header('location: ../index.php?error=wrongusername');
         exit();
     }
 
-    if(pwdMatch($password,$cpassword) != false) {
-        header("location: ../index.php?error=wrongpass");
+    // // check for phone
+    if(!preg_match("/^[6-9][0-9]{9}$/",$phone)) {
+        header('location: ../index.php?error=wrongphone');
         exit();
     }
 
-    if(emailExists($conn,$email) != false) {
-        header("location: ../index.php?error=emailTaken");
+    // check for email
+    $sql = "SELECT count(*) FROM usersignup WHERE email = :email";
+    $stmt =$pdo->prepare($sql);
+    $stmt->bindParam(':email',$email);
+    $stmt->execute();
+
+    if(!$stmt){
+        header('location: ../index.php?error=servererror');
         exit();
     }
 
-    $query="INSERT INTO usersignup(username, email, addr, phone, pass, cpassword) VALUES (?,?,?,?,?,?)";
-    $stmt = mysqli_stmt_init($conn);
-    
-    if(!mysqli_stmt_prepare($stmt, $query)) {
-        header("location: ../index.php?error=createfailed");
+    $rows = $stmt->fetch(PDO::FETCH_ASSOC)['count(*)'];
+    if($rows > 0){
+        header('location: ../index.php?error=emailexsist');
         exit();
     }
-    
-    $pass = password_hash($password, PASSWORD_DEFAULT);
-    $cpass = $pass;
-     
-    mysqli_stmt_bind_param($stmt, "ssssss", $username, $email, $address, $phone, $pass, $cpass);
-    
-    
 
-    mysqli_stmt_execute($stmt);
+    // if everything is fine, insert the values
+    $query = "INSERT INTO `usersignup`(username, email, addr, phone, pass) VALUES (:username, :email, :addr, :phone, :pass)";
+    $stmt1 = $pdo->prepare($query);
     
-    mysqli_stmt_close($stmt);
-    
-    header("location: ../index.php?error=none");
+    $stmt1->bindParam(':username',$username);
+    $stmt1->bindParam(':email',$email);
+    $stmt1->bindParam(':addr',$address);
+    $stmt1->bindParam(':phone',$phone);
+    $stmt1->bindParam(':pass',$cpassword);
+
+    $stmt1->execute();
+
+    if(!$stmt1){
+        header('location: ../index.php?error=servererror');
+        exit();
+    }
+
+    header('location: ../index.php?error=none');
     exit();
 }
-else {
-    echo "PRoblem";
-}
-?>
-
