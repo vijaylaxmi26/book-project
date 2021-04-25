@@ -15,6 +15,8 @@ if(isset($_POST['submit'])){
    }else{
       $_SESSION['ADMIN_LOGIN']='yes';
       $_SESSION['ADMIN_USERNAME']=$username;
+      $row=mysqli_fetch_assoc($res);
+      $_SESSION['ADMIN_ID']=$row['id'];
       header("location: category.php");
       die();
    }
