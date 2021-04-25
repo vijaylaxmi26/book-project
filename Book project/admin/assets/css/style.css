@@ -3340,6 +3340,11 @@ footer.site-footer .footer-inner a {
     color:red;
     margin-top: 15px;
 }
+.result{
+    color:rgb(0, 255, 179);
+    margin-top: 15px;
+}
+
 
 .card .box-link {
     font-weight: 600;
