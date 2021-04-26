@@ -28,6 +28,15 @@ if(isset($_POST['pin-submit'])){
         $pro_id = $key;
         $pro_qty = $_SESSION['cart'][$key]['qty'];
 
+        $sqlbefore = "SELECT product_price FROM products WHERE product_id = '$key'";
+        $resultbefore = mysqli_query($conn, $sqlbefore);
+        if(!$resultbefore){
+            die(mysqli_error($conn));
+        }
+        while($rows=mysqli_fetch_assoc($resultbefore)){ 
+            $price = $rows['product_price'];
+        }
+        $price = $price*$pro_qty;
         // echo $pro_id;
         // echo "<br>";
         // echo $pro_qty;
@@ -42,7 +51,7 @@ if(isset($_POST['pin-submit'])){
         // echo "<br>";
         
         
-        $sql = "INSERT INTO `orders`(`order_add`, `order_pincode`, `order_qty`, `email`,`p_id`, `user_id`,`status`) VALUES ('$address','$pin','$pro_qty','$email','$pro_id','$user_id','pending')";
+        $sql = "INSERT INTO `orders`( `order_add`, `order_pincode`, `total_price`, `order_qty`, `p_id`, `user_id`) VALUES ('$address','$pin','$price','$pro_qty','$pro_id','$user_id')";
         $result = mysqli_query($conn,$sql);
         if(!$result){
             die(mysqli_error($conn));
