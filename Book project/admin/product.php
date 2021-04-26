@@ -20,7 +20,7 @@
        mysqli_query($conn,$delete_sql);
     }
  }
- $sql = "select products.*,category.cat_type as cat_type from products,category where id=cat_id order by product_id";
+ $sql = "call getproducts()";
  $res=mysqli_query($conn,$sql);
  
 ?>
