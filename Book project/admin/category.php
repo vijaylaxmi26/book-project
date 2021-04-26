@@ -20,7 +20,7 @@ require('top.php');
          mysqli_query($conn,$delete_sql);
       }
    }
-   $sql = "select * from category order by id";
+   $sql = "call getcategory()";
    $res=mysqli_query($conn,$sql);
  
 ?>
