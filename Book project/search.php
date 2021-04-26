@@ -72,10 +72,10 @@
                 
                 if(isset($_POST['search'])){
                     $item = $_POST['input-item'];
-                    $sql ="select * from products,category where category.status='1' and products.cat_id = category.id and products.product_name LIKE '%$item%'";
+                    $sql ="select * from products,category where products.product_name LIKE '%$item%' or category.cat_type like '%$item%' and category.status='1' and products.cat_id = category.id";
                     $stmt =$pdo->prepare($sql);
                     $stmt->execute();
-                    $row = $pdo->query("select count(*) from products,category where category.status='1' and products.cat_id = category.id and products.product_name LIKE '%$item%'")->fetchColumn(); 
+                    $row = $pdo->query("select count(*) from products,category where products.product_name LIKE '%$item%' or category.cat_type like '%$item%' and category.status='1' and products.cat_id = category.id")->fetchColumn(); 
                     
             ?>
             

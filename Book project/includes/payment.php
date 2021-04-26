@@ -3,7 +3,7 @@ session_start();
 include('db.php');
 
 
-if(isset($_POST['pin-submit'])){
+if(isset($_POST['pin-submit']) && $_POST['pincode'] != ''){
 
     $pin = $_POST['pincode'];
     $email = $_SESSION['useremail'];

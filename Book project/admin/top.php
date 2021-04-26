@@ -29,6 +29,21 @@ if(isset($_SESSION['ADMIN_LOGIN']) && $_SESSION['ADMIN_LOGIN']!=''){
       <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
       <link rel="stylesheet" href="assets/css/style.css">
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+      <style>
+      .logo
+      {
+         color: #fff;
+         font-weight: 700;
+         font-size: 2em;
+         text-decoration: none;
+      }
+      .logo{
+         color:#111;
+      }
+      .logo span{
+         color: #37b859;
+      }
+      </style>
    </head>
    <body>
       <aside id="left-panel" class="left-panel">
@@ -56,8 +71,7 @@ if(isset($_SESSION['ADMIN_LOGIN']) && $_SESSION['ADMIN_LOGIN']!=''){
          <header id="header" class="header">
             <div class="top-left">
                <div class="navbar-header">
-                  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="Logo"></a>
-                  <a class="navbar-brand hidden" href="index.html"><img src="images/logo2.png" alt="Logo"></a>
+                  <a href="category.php" class="logo">Book<span>.</span></a>
                   <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                </div>
             </div>

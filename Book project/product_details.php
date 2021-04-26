@@ -201,79 +201,13 @@
                     </div>
                     
                     <a href="javascript:void(0)" onclick="manage_cart(<?php echo $id_display;?>,'add')"><button type="button" class="btn btn-light btn-md mr-1 mb-2"><i class="fas fa-shopping-cart pr-2"></i>Add to cart</button></a>
+                    <a href="product.php"><button type="button" class="btn btn-light btn-md mr-1 mb-2"><i class="fas fa-shopping-cart pr-2"></i>Continue Shopping</button></a>
                 </div>
             </div>
 
         </section>
         <!--Section: Block Content-->
-        <h1 class="padding-63"> Other Similar Products</h1>
-        <!--Section: Block Content-->
-        <section class="text-center">
-       
-            <!-- Grid row -->
-            <div class="row">
-            
-            <!-- Grid column -->
-            <div class="col-md-6 col-lg-3 mb-5">
-
-            <?php 
-
-                $query_suggest = "SELECT count(*), products.*, cat_type from products, category where cat_type = '$productCategory' and category_id = id ";
-                $stmt1 =$pdo->prepare($sql);
-                $stmt1->execute();
-                $suggestions = $stmt1->fetch(PDO::FETCH_ASSOC);
-                $tempiiii = $suggestions['count(*)'];
-                echo $tempiiii;
-                if($tempiiii > 0){
-                    while($suggestions = $stmt1->fetch(PDO::FETCH_ASSOC)){
-                        $product_id_suggest = $suggestions['product_id'];
-                        $product_name = $suggestions['product_name'];
-                        $product_Price = $suggestions['product_price'];
-                        $product_Image = $suggestions['product_photo'];
-
-            ?>
-
-                <!-- Card -->
-                <div class="">
-                    <div class="view zoom overlay z-depth-2 rounded">
-                        <img class="img-fluid w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg" alt="Sample">
-                    </div>
-                    <div class="pt-4">
-                        <h5><?php echo $product_name; ?></h5>
-                        <h6>
-                        <span class="text-danger mr-1">£<?php echo $product_Price; ?></span>
-    
-                        </h6>
-                    </div>
-                    <a href="?id=<?php echo $product_id_suggest; ?>">
-                        <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
-                            <i class="fas fa-info-circle pr-2"></i>
-                            Details
-                        </button>
-                    </a>
-                </div>
-                <!-- Card -->
-
-            <?php
-
-
-
-
-                    }
-                }
-                else{
-                    echo "No suggestions";
-                }
-            
-            ?>
-                
-
-            </div>
-            <!-- Grid column -->
-            </div>
-        <!-- Grid row -->
-        </section>
-        <!--Section: Block Content-->
+        
         
     </body>
 </html>

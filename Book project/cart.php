@@ -55,10 +55,10 @@
             width: 90%;
         }
         .quantity {
-            width: 40%;
+            width: 30%;
         }
         .number-input {
-            margin-left: 20%;
+            margin-left: 10%;
         }
         .fa {
             padding: 5px;
@@ -210,7 +210,7 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                     Shipping
-                                    <span>£10</span>
+                                    <span>£0</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                     <div>
@@ -219,7 +219,7 @@
                                             <p class="mb-0">(including VAT)</p>
                                         </strong>
                                     </div>
-                                        <span><strong>£<?php $_SESSION['amount'] = $price + 10; echo number_format($price+10);?></strong></span>
+                                        <span><strong>£<?php $_SESSION['amount'] = $price; echo number_format($price);?></strong></span>
                                 </li>
                             </ul>
 

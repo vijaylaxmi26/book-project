@@ -11,7 +11,7 @@
 
         while($posts=$stmt->fetch(PDO::FETCH_ASSOC)){
             $categoryName = $posts['cat_type'];
-            echo "<li><a href='#'>{$categoryName}</a></li>";
+            echo "<li>{$categoryName}</li>";
         }
     }
     else {

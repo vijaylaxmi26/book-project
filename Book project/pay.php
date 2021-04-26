@@ -1,4 +1,20 @@
-<?php  require_once("./includes/db1.php"); ?>
+<?php  require_once("./includes/db1.php"); 
+
+if($_SESSION['amount'] == 0){
+    header('location: index.php?error=cartempty');
+    exit();
+}
+
+if(isset($_GET['error'])){
+    $errorr = $_GET['error'];
+    if($errorr == "pininvalid"){
+?>
+        <script>alert("please enter a valid pin number");</script>
+<?php
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">

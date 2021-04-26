@@ -4,7 +4,7 @@
 session_start();
 unset($_SESSION['Admin_LOGIN']);
 unset($_SESSION['ADMIN_USERNAME']);
-header("location: login.php");
+header("location: ../index.php");
 die();
 
 ?>
