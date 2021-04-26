@@ -6,6 +6,19 @@ include('db.php');
 if(isset($_POST['pin-submit']) && $_POST['pincode'] != ''){
 
     $pin = $_POST['pincode'];
+    foreach($_SESSION['cart'] as $key=>$value){
+        $str = "rating-".$key;
+        $_SESSION['carts']['rating'][$key] = $_POST[$str];
+    }
+
+    foreach($_SESSION['cart'] as $key=>$value){
+        if($_SESSION['carts']['rating'][$key] > 5 || $_SESSION['carts']['rating'][$key] < 0){
+            header('location: ../pay.php?=error=invalidrating');
+            exit();
+        }
+    }
+
+    
     $email = $_SESSION['useremail'];
     $query = "SELECT * FROM usersignup WHERE email = '$email'";
     $res = mysqli_query($conn,$query);
@@ -15,18 +28,11 @@ if(isset($_POST['pin-submit']) && $_POST['pincode'] != ''){
         $user_id = $users['sno'];
     }
 
-    // echo $address;
-    // echo "<br>";
-    // echo $user_id;
-    // echo "<br>";
-    // echo $pin;
-    // echo "<br>";
-    // echo $email;
-
     foreach($_SESSION['cart'] as $key=>$value){
         
         $pro_id = $key;
         $pro_qty = $_SESSION['cart'][$key]['qty'];
+        $rating_given = $_SESSION['carts']['rating'][$key];
 
         $sqlbefore = "SELECT product_price FROM products WHERE product_id = '$key'";
         $resultbefore = mysqli_query($conn, $sqlbefore);
@@ -37,21 +43,9 @@ if(isset($_POST['pin-submit']) && $_POST['pincode'] != ''){
             $price = $rows['product_price'];
         }
         $price = $price*$pro_qty;
-        // echo $pro_id;
-        // echo "<br>";
-        // echo $pro_qty;
-        // echo "<br>";
-        // echo $pin;
-        // echo "<br>";
-        // echo $email;
-        // echo "<br>";
-        // echo $user_id;
-        // echo "<br>";
-        // echo $address;
-        // echo "<br>";
         
         
-        $sql = "INSERT INTO `orders`( `order_add`, `order_pincode`, `total_price`, `order_qty`, `p_id`, `user_id`) VALUES ('$address','$pin','$price','$pro_qty','$pro_id','$user_id')";
+        $sql = "INSERT INTO `orders`( `order_add`, `order_pincode`, `total_price`,`order_rating`, `order_qty`, `p_id`, `user_id`) VALUES ('$address','$pin','$price','$rating_given','$pro_qty','$pro_id','$user_id')";
         $result = mysqli_query($conn,$sql);
         if(!$result){
             die(mysqli_error($conn));

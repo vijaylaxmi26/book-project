@@ -85,6 +85,23 @@ if(isset($_GET['error'])){
                     <div class="form-group">
                         <label for="pin">Pincode:</label>
                         <input type="number" class="form-control" id="pin" placeholder="Enter Pincode" name="pincode">
+
+                        <?php 
+                        foreach($_SESSION['cart'] as $key=>$value){
+                            // $key is the product id;
+                            $sql_query = "SELECT product_name from products where product_id='$key'";
+                            $stmt =$pdo->prepare($sql_query);
+                            $stmt->execute();
+                            $product_name = $stmt->fetch(PDO::FETCH_ASSOC)['product_name'];
+                        ?>
+                            <br>
+                            <label for="rating">Enter rating of <?php echo $product_name;?> (0 to 5)</label>
+                            <input type="number" class="form-control" id="rating" placeholder="Enter Rating" name="rating-<?php echo $key;?>">
+                           
+                        <?php
+                        }
+                        ?>
+                        
                     </div>
                     <button name="pin-submit" type="submit" class="btn btn-default">Submit</button>
                 </form>
