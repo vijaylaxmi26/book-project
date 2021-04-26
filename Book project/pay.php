@@ -12,6 +12,11 @@ if(isset($_GET['error'])){
         <script>alert("please enter a valid pin number");</script>
 <?php
     }
+    else if($errorr == "invalidrating"){
+?>
+        <script>alert("please enter a valid rating");</script>
+<?php
+    }
 }
 
 ?>
