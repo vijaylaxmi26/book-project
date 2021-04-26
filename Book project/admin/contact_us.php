@@ -1,6 +1,10 @@
 <?php
 require('top.php');
  
+   $sql_query_2 = "select 	countmessage()";
+   $res_query_2 = mysqli_query($conn,$sql_query_2);
+   $total_msg = mysqli_fetch_assoc($res_query_2)['countmessage()'];
+
 
 if(isset($_POST['submit'])){
     $name=$_POST['name'];
@@ -32,7 +36,7 @@ $res=mysqli_query($conn,$sql);
                   <div class="col-xl-12">
                      <div class="card">
                         <div class="card-body">
-                           <h4 class="box-title">Orders </h4>
+                           <h4 class="box-title">Messages :: Total unresponded message - <?php echo $total_msg ?></h4>
                         </div>
                          <div class="card-body--">
                            <div class="table-stats order-table ov-h">
