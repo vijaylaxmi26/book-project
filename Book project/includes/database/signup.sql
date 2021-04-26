@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2021 at 03:22 PM
+-- Generation Time: Apr 26, 2021 at 08:09 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -54,6 +54,12 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `countproduct` () RETURNS INT(11) BEG
   RETURN c;
 END$$
 
+CREATE DEFINER=`root`@`localhost` FUNCTION `countproductcat` (`id` INT(11) UNSIGNED) RETURNS INT(11) UNSIGNED BEGIN
+  DECLARE c int(11);
+  select count(`product_id`) into c from `products` where `cat_id`=`id`;
+  RETURN c;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -93,10 +99,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `cat_type`, `status`) VALUES
-(1, 'cat1', 0),
-(3, 'cat3', 1),
-(4, 'cat6', 1),
-(8, 'Story book', 1);
+(1, 'Fantacie', 1),
+(3, 'Story book', 1),
+(4, 'Thrillers', 1);
 
 -- --------------------------------------------------------
 
@@ -119,7 +124,8 @@ CREATE TABLE `contact_us` (
 INSERT INTO `contact_us` (`id`, `name`, `email`, `message`, `status`) VALUES
 (1, 'ravesh', 'ravesh123@gmail.com', 'i like your website', 0),
 (3, 'joe', 'joe123@gmail.com', 'nice content', 0),
-(4, 'techno starks', 'technostarks03@gmail.com', 'can we buy your book?', 1);
+(4, 'techno starks', 'technostarks03@gmail.com', 'can we buy your book?', 1),
+(5, 'aastha', 'aastha123@gmail.com', 'are these books for sale?', 0);
 
 -- --------------------------------------------------------
 
@@ -145,9 +151,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_add`, `order_pincode`, `total_price`, `order_status`, `order_on`, `p_id`, `order_qty`, `user_id`, `order_rating`) VALUES
-(1, 'Gandhinagar, Gujrat', 112345, 1400, 4, '2021-04-25 13:37:27', 1, 2, 2, 1.3),
+(1, 'Gandhinagar, Gujrat', 112345, 1400, 5, '2021-04-25 13:37:27', 1, 2, 2, 1.3),
 (2, 'xxxxxxxxxxxx', 1111231, 1500, 2, '2021-04-26 07:18:13', 5, 5, 2, 2.5),
-(3, 'xxxx', 264823, 1400, 1, '2021-04-26 10:52:46', 2, 1, 3, 3.4),
 (4, 'xxxx', 45624, 500, 1, '2021-04-26 10:53:48', 5, 1, 4, 3.1);
 
 --
@@ -208,14 +213,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_discription`, `product_selleid`, `product_price`, `product_rating`, `product_quantity`, `product_photo`, `status`, `cat_id`) VALUES
-(1, 'graphic design', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 425, 700, 1.3, 5, 'book3.jpg', 1, 1),
+(1, 'graphic design', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 425, 700, 1.3, 5, 'book3.jpg', 0, 1),
 (2, 'neurologic\r\n', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n', 321, 1500, 3.4, 9, 'book2.jpg', 1, 3),
 (3, 'Your Soul is a River', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 453, 550, 0, 16, 'book1.jpg', 1, 1),
 (4, 'The passion', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 465, 450, 1.2, 40, 'book4.jpg', 1, 4),
-(5, 'Face it Debbie Harry', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n', 125, 300, 2.8, 6, 'book5.jpg', 1, 7),
 (6, ' Women', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n', 632, 600, 0, 10, 'book6.jpg', 1, 1),
 (7, 'your soul', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n', 154, 1200, 0, 16, 'book1.jpg', 1, 1),
-(11, 'pease', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', NULL, 218, 0, 27, 'book1.jpg', 1, 3);
+(11, 'pease', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', NULL, 218, 0, 27, 'book1.jpg', 1, 3),
+(18, 'Face it Debbie Harry', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 125, 700, 1.3, 5, '9023054097_', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -305,13 +310,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -329,7 +334,7 @@ ALTER TABLE `orderstatus`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `usersignup`
