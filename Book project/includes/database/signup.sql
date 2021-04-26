@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2021 at 01:55 PM
+-- Generation Time: Apr 26, 2021 at 03:22 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -36,9 +36,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getproducts` ()  select products.*,
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `countorders` () RETURNS INT(11) BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `countcategory` () RETURNS INT(11) BEGIN
   DECLARE c int(11);
-  SELECT count(order_id) into c from `orders`;
+  SELECT count(id) into c from `category`;
+  RETURN c;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `countmessage` () RETURNS INT(11) BEGIN
+  DECLARE c int(11);
+  SELECT count(id) into c from `contact_us` where `status`='0';
   RETURN c;
 END$$
 
