@@ -2,9 +2,9 @@
  require('top.php');
 
    // query to calculate total products
-   $sql_query_2 = "select count(*) from products";
+   $sql_query_2 = "select countproduct()";
    $res_query_2 = mysqli_query($conn,$sql_query_2);
-   $total_products = mysqli_fetch_assoc($res_query_2)['count(*)'];
+   $total_products = mysqli_fetch_assoc($res_query_2)['countproduct()'];
 
  if(isset($_GET['type']) && $_GET['type']!=''){
      $type=get_safe_value($conn,$_GET['type']);
@@ -35,7 +35,7 @@
                   <div class="col-xl-12">
                      <div class="card">
                         <div class="card-body">
-                           <h4 class="box-title"><?php echo $total_products; ?> Product</h4>
+                           <h4 class="box-title">Product :: Total Products - <?php echo $total_products ?></h4>
                            <h4 class="box-link"><a href="add_product.php">Add Product</a></h4>
                         </div>
                          <div class="card-body--">

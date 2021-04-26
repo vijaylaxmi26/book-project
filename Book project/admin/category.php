@@ -1,9 +1,10 @@
 <?php
 require('top.php');
    // Query for counting total category
-   $sql_query = "select count(*) from category";
+   $sql_query = "SELECT countcategory()";
    $res_query = mysqli_query($conn,$sql_query);
-   $total_category = mysqli_fetch_assoc($res_query)['count(*)'];
+   $total_category = mysqli_fetch_assoc($res_query)['countcategory()'];
+   //print_r(mysqli_fetch_assoc($res_query));
 
    if(isset($_GET['type']) && $_GET['type']!=''){
       $type=get_safe_value($conn,$_GET['type']);
@@ -34,7 +35,7 @@ require('top.php');
                   <div class="col-xl-12">
                      <div class="card">
                         <div class="card-body">
-                           <h4 class="box-title"><?php echo $total_category; ?> Categories </h4>
+                           <h4 class="box-title"> Categories :: Total categories - <?php echo $total_category ?> </h4>
                            <h4 class="box-link"><a href="add_categories.php">Add Categories</a></h4>
                         </div>
                          <div class="card-body--">
