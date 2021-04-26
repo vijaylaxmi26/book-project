@@ -9,12 +9,12 @@ $Category='';
 $image='';
 $id='';
 $image_required='required';
-
-if(isset($_GET['id'])){
-    
+$x=0;
+if(isset($_GET['id']) && $_GET['id']!=''){
+    $x=1;
     $image_required='';
     $id=get_safe_value($conn,$_GET['id']);
-    $sql="select *,category.cat_type as cat_type from `products`,`category` where `product_id`='$id' and `id` =`cat_id`";
+    $sql="select products.*,category.cat_type as cat_type from `products`,`category` where `product_id`='$id' and `id` =`cat_id`";
     $res=mysqli_query($conn,$sql);
     $check=mysqli_num_rows($res);
     if($check){
@@ -33,59 +33,56 @@ if(isset($_GET['id'])){
 }
 
 if(isset($_POST['submit'])){
-    
-    $name_p=get_safe_value($conn,$_POST['name']);
-    $details_p=get_safe_value($conn,$_POST['details']);
-    $quantity_p=get_safe_value($conn,$_POST['quantity']);
-    $price_p=get_safe_value($conn,$_POST['price']);
-    $Category_p=get_safe_value($conn,$_POST['Category']);
+    $name=get_safe_value($conn,$_POST['name']);
+$details=get_safe_value($conn,$_POST['details']);
+$quantity=get_safe_value($conn,$_POST['quantity']);
+$price=get_safe_value($conn,$_POST['price']);
+$Category=get_safe_value($conn,$_POST['Category']);
 
-    $image_p = rand(1111111,9999999999).'_'.$_FILES['photo']['name'];
-    $target_p ='image/'.basename($_FILES['photo']['name']);
-    move_uploaded_file($_FILES['photo']['tmp_name'],$target_p);
 
-    $sql="select * from `products` where `product_id`='$id'";
+$image = rand(1111111,9999999999).'_'.$_FILES['photo']['name'];
+$target ='image/'.basename($_FILES['photo']['name']);
+move_uploaded_file($_FILES['photo']['tmp_name'],$target);
+     
+    $sql="select * from `products` where `product_name`='$name'";
     $res=mysqli_query($conn,$sql);
     $check=mysqli_num_rows($res);
-    
-    if($check > 0){
-        if(isset($_GET['id']) || isset($_GET['type'])){
+
+    if($check>0){
+        if($x==1){
             $getdata=mysqli_fetch_assoc($res);
-            if($id == $getdata['product_id']){
-                $temp = 1;
+            if($id==$getdata['product_id']){
+                 
             }else{
-                echo "ok";
-                $msg="product already";
+                $msg="product already existe";
             }
-        }
-        else{
-            echo "noooo";
+        }else{
             $msg="product already existe";
         }
     } 
 
-    if($msg=='')
-    {
-        if(isset($_GET['id'])){
-            
+    if($msg==''){
+        if(isset($_GET['id']) && $_GET['id']!=''){
             $id=get_safe_value($conn,$_GET['id']);
-            
-            $sql= "UPDATE `products` SET `product_name`='$name_p',
-            `product_discription`='$details_p',`product_price`='$price_p',`product_quantity`='$quantity_p',`product_photo`='$image_p',`cat_id`='$Category_p' where `id`='$id'";
+            $sql= "UPDATE `products` SET `product_name`='$name',
+            `product_discription`='$details',
+            `product_price`='$price',             
+            `product_quantity`='$quantity',
+            `product_photo`='$image',
+            `cat_id`='$Category'
+             where `product_id`='$id'";
 
             if(mysqli_query($conn,$sql)){
                 header('location: product.php');
                 die();
-            }
-            else{
+            }else{
                 $msg="somthing went wrong";
             }
-        }
-        else
-        {
-            echo "nnooo";
+
+        }else{
+            
             $sql1="INSERT INTO `products`(`product_name`, `product_discription`,`product_price`, `product_quantity`, `product_photo`, `cat_id`) 
-             VALUES('$name_p','$details_p','$price_p','$quantity_p','$image_p','$Category_p')";
+             VALUES('$name','$details','$price','$quantity','$image','$Category')";
             if(mysqli_query($conn,$sql1))
             {
                 header('location: product.php');

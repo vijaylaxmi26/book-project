@@ -67,7 +67,7 @@
                                             }else{
                                                  echo "<span class='badge badge-pending'><a href='?type=status&operation=active&id=".$row['product_id']."'>Deactivate</a></span>&nbsp;";
                                             } 
-                                            echo "<span class='badge badge-edit'><a href='add_product.php?id=".$row['product_id']."&type=edit'>Edit</a></span>&nbsp;";
+                                            echo "<span class='badge badge-edit'><a href='add_product.php?id=".$row['product_id']."'>Edit</a></span>&nbsp;";
                                             echo "<span class='badge badge-delete'><a href='?type=delete&id=".$row['product_id']."'>Delete</a>&nbsp;</span>";
                                              
                                             ?>
