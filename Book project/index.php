@@ -89,7 +89,7 @@
             <div class="content">
                 <h2>Always choose good</h2>
                 <p>he latest tech news about the world's best (and sometimes worst) hardware, apps, and much more. From top companies like Google and Apple to tiny startups vying for your attention, Verge Tech has the latest in what matters in technology daily.</p>
-                <a href="#" class="btn">our menu</a>
+                <a href="#menu" class="btn">our menu</a>
             </div>          
         </section>
         <section class="about" id="about">
@@ -126,11 +126,9 @@
                    $product_price = $posts['product_price'];
                     
                    ?> 
-
-                     
                         <div class="box">
                             <div class="imgBx">
-                               <img src="images/<?php echo $product_photo ?>" alt="<?php echo $product_photo ?>">
+                               <img src="admin/image/<?php echo $product_photo ?>" alt="<?php echo $product_photo ?>">
                             </div>
                             <div class="text">
                                 <h3><?php echo $product_name ?></h3>
@@ -148,7 +146,7 @@
             ?>
                
             </div>
-            <div style="justify-content:center">
+            <div class="content">
             <a href="product.php" class="btn">viwe all</a>
             </div>
         </section>
