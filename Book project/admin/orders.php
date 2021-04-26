@@ -9,7 +9,7 @@
        mysqli_query($conn,$delete_sql);
     }
  }
- $sql = "select orders.*,orderstatus.ostatus,product.product_name from orders,orderstatus,product where order_status=os_id and product_id=p_id order by order_id";
+ $sql = "select orders.*,orderstatus.ostatus,products.product_name from orders,orderstatus,products where order_status=os_id and product_id=p_id order by order_id";
  $res=mysqli_query($conn,$sql);
  
 ?>
