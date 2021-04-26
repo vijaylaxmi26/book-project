@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/style.css">
         <style>
         header {
-            background-color: #37B859;
+            background-color:#17e3b0;
           
         }
         *{
@@ -23,7 +23,7 @@
         }
         .col-lg-4,.col-md-4 {
             padding: 5px;
-            
+            decoration:none;
             margin-top: 5px;
             box-sizing: border-box;
         }
@@ -39,7 +39,6 @@
         }
         .btn {
             font-size: 0.7rem;
-            background-color: #057BFF;
             padding: 5px;
             margin-top: 0;
             letter-spacing: normal;
@@ -53,8 +52,6 @@
         .form-outline input {
             width: 90%;
         }
-       
-        
         
         </style>
       
@@ -65,8 +62,7 @@
         <div class="space"></div>
         <div class="row">
             <div class="col-lg-2 col-xs-12">
-                <?php include 'includes/categories-side.php' ?>
-                
+                <?php include 'includes/categories-side.php' ?>  
             </div>
             <div class="col-lg-10 col-xs-12">
                 
@@ -87,7 +83,7 @@
                             <!-- Card -->
                             <div class="card">
                             <div class="view zoom overlay">
-                            <img class="img-fluid w-100" src="images/<?php echo $productImage; ?>" alt="<?php echo $productImage; ?>">
+                            <img class="img-fluid w-100" src="admin/image/<?php echo $productImage; ?>" alt="<?php echo $productImage; ?>">
                             </div>
 
                             <div class="card-body text-center">
@@ -119,7 +115,7 @@
                                 <i class="fas fa-shopping-cart pr-2"></i>Add to cart
                             </button> -->
                             <a href="product_details.php?id=<?php echo $product_id; ?>">
-                                <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                                <button type="button" class="btn btn-outline-succes mr-1 mb-2">
                                     <i class="fas fa-info-circle pr-2"></i>
                                     Details
                                 </button>
