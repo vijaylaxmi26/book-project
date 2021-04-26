@@ -5,7 +5,7 @@
      $type=get_safe_value($conn,$_GET['type']);
      if($type=='delete'){
         $id = get_safe_value($conn,$_GET['id']);
-       $delete_sql = "delete from orders where id='$id'";
+       $delete_sql = "delete from orders where `order_id`='$id'";
        mysqli_query($conn,$delete_sql);
     }
  }
@@ -34,7 +34,7 @@
                                        <th>Product</th>
                                        <th>Total price</th>                                        
                                        <th>User id</th>
-                                       <th>Ordersatus</th>
+                                       <th>Orderstatus</th>
                                        <th>Update</th>
                                     </tr>
                                  </thead>

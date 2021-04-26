@@ -1,6 +1,7 @@
 <?php
 require('top.php');
    // Query for counting total category
+   $msg='';
    $sql_query = "SELECT countcategory()";
    $res_query = mysqli_query($conn,$sql_query);
    $total_category = mysqli_fetch_assoc($res_query)['countcategory()'];
@@ -21,8 +22,15 @@ require('top.php');
       }
       if($type=='delete'){
          $id = get_safe_value($conn,$_GET['id']);
-         $delete_sql = "delete from category where id='$id'";
-         mysqli_query($conn,$delete_sql);
+         $sql_query_2 = "select 	countproductcat($id) as cot";
+         $res_query_2 = mysqli_query($conn,$sql_query_2);
+         $total_products = mysqli_fetch_assoc($res_query_2)['cot'];
+         if($total_products==0){
+            $delete_sql = "delete from category where id='$id'";
+            mysqli_query($conn,$delete_sql);
+         }else{
+            $msg="  Error: product is availble in this category!!";
+         }
       }
    }
    $sql = "call getcategory()";
@@ -76,6 +84,7 @@ require('top.php');
                                      } ?>
                                  </tbody>
                               </table>
+                              <div class="field_error"><?php echo $msg ?></div>
                            </div>
                         </div>
                      </div>
