@@ -22,7 +22,7 @@ if(isset($_GET['type']) && $_GET['type']!=''){
    }
 }
 
-$sql = "select * from `contact_us` order by id";
+$sql = "call getcontact()";
 $res=mysqli_query($conn,$sql);
 
 ?>
