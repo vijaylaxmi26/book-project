@@ -145,7 +145,7 @@
                         <figure class="view overlay rounded z-depth-1 main-img">
                             <!-- <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
                             data-size="710x823"> -->
-                            <img src="images/<?php echo $productImage; ?>" class="img-fluid z-depth-1">
+                            <img src="admin/image/<?php echo $productImage; ?>" class="img-fluid z-depth-1">
                             <!-- </a> -->
                         </figure>
                         </div>

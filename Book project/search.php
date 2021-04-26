@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/style.css">
         <style>
         header {
-            background-color: #37B859;
+            background-color: #17e3b0;
         }
         *{
             font: normal;
@@ -97,7 +97,7 @@
                             <div class="card">
 
                             <div class="view zoom overlay">
-                            <img class="img-fluid w-100" src="images/<?php echo $productImage; ?>" alt="<?php echo $productImage; ?>">
+                            <img class="img-fluid w-100" src="admin/image/<?php echo $productImage; ?>" alt="<?php echo $productImage; ?>">
                         
                             
                             </div>

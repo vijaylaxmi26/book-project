@@ -13,7 +13,7 @@
         
         <style>
         header {
-            background-color: #37B859;
+            background-color: #17e3b0;
           
         }
         *{
@@ -109,7 +109,7 @@
                                 <div class="row mb-4">
                                     <div class="col-md-5 col-lg-3 col-xl-3">
                                         <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                            <img class="img-fluid w-100" src="images/<?php echo $products['product_photo'];?>" alt="Sample">
+                                            <img class="img-fluid w-100" src="admin/image/<?php echo $products['product_photo'];?>" alt="Sample">
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-lg-9 col-xl-9">
